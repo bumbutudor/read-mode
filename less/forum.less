@@ -1,0 +1,40 @@
+.Modal--full {
+    max-width: 100%;
+    margin: unset;
+}
+
+.ReadModeModal .Modal-content {
+    background-color: rgb(237, 209, 176);
+    color: black;
+}
+
+.ReadModePostStream-item :where(.Post-header, .Post-actions) {
+    display: none;
+}
+
+.ArticleTitle h3 {
+    font-size: 28px;
+    // font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+.ReadModePostStream-item .Post-body p, .ReadModePostStream-item .Post-body {
+    line-height: 1.6;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+    text-align: justify;
+    font-size: 24px !important;
+    font-weight: 500;
+}
+
+.ReadModePostStream-item :where(.Post-body img, .Post-body iframe) {
+    max-width: 200px !important;
+    text-align: center;
+  }
+
+  .ReadModePostStream-item .Post{
+      padding-top: 0 !important;
+  }
+
+//  .modal-backdrop {
+//       background-color: rgb(237, 209, 176) !important;
+//   }
