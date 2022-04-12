@@ -4,6 +4,9 @@ export function getBrowser() {
 
   if (userAgent.match(/chrome|chromium|crios/i)) {
     browserName = 'chrome';
+    if (userAgent.indexOf("Edg") > -1){
+      browserName = 'edge';
+    }
   } else if (userAgent.match(/firefox|fxios/i)) {
     browserName = 'firefox';
   } else if (userAgent.match(/safari/i)) {

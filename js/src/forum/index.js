@@ -5,7 +5,7 @@ import Button from 'flarum/common/components/Button';
 import Model from 'flarum/common/Model';
 import Discussion from 'flarum/common/models/Discussion';
 
-import ReadModeModal from './components/ReadModeModal';
+// import ReadModeModal from './components/ReadModeModal';
 import ArticleModal from './components/ArticleModal';
 import { getBrowser } from './utils/getBrowser';
 import { isProbablyReaderable, Readability } from '@mozilla/readability'
@@ -19,36 +19,33 @@ app.initializers.add('tudor/read-mode', () => {
     console.log(browser);
     // fnBrowserDetect();
 
+    const handleBrowser = () => {
+      if (browser === 'firefox') {
+        if (isProbablyReaderable(document)) {
+          const documentClone = document.cloneNode(true);
+          const article = new Readability(documentClone).parse();
+          // TODO
+          app.modal.show(ArticleModal, { discussion: this.discussion });
+        }
+      }
+      if (browser === 'edge') {
+        const baseUrl = app.forum.attribute('baseUrl');
+        const read_url = `read://https_${baseUrl}?url=${this.discussion.shareUrl()}`;
+        window.open(read_url, "_blank");
+        // console.log(read_url);
+      }
+      else {
+        app.modal.show(ArticleModal, { discussion: this.discussion });
+      }
+
+
+    }
+
     items.add('read-mode',
       <Button
         class="Button Button-icon Button--read-mode"
         icon="fas fa-book-reader"
-        onclick={() => {
-          if (browser === 'chrome') {
-            app.modal.show(ArticleModal, { discussion: this.discussion });
-          }
-          if (browser === 'firefox') {
-            if (isProbablyReaderable(document)) {
-              // var documentClone = document.cloneNode(true);
-              // var article = new Readability(documentClone).parse();
-              document.dispatchEvent(
-                new KeyboardEvent("keydown", {
-                  "key": "F9",
-                  "keyCode": 120,
-                  "which": 120,
-                  "code": "F9",
-                  "location": 0,
-                  "altKey": false,
-                  "ctrlKey": false,
-                  "metaKey": false,
-                  "shiftKey": false,
-                })
-              );
-            }
-          }
-        }
-
-        }
+        onclick={() => handleBrowser()}
       >
         {app.translator.trans('read-mode.forum.discussion.read_mode_button')}
       </Button>,
