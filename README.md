@@ -1,27 +1,26 @@
 # Read-mode
 
-![License](https://img.shields.io/badge/license-0BSD-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/tudor/read-mode.svg)](https://packagist.org/packages/tudor/read-mode) [![Total Downloads](https://img.shields.io/packagist/dt/tudor/read-mode.svg)](https://packagist.org/packages/tudor/read-mode)
+Comută în modul cititor un articol a unui portlet.
 
-A [Flarum](http://flarum.org) extension. Add reading mode feature in DiscussionPage
+Această funcție comută în modul cititor. Este nevoie de un ztab ID ca parametru: dacă acesta este omis, fila activă în prezent este comutată.
+
+Aceasta este o funcție asincronă care returnează un Promise.
+
+Reader Mode, cunoscut și sub numele de Reader View, este o caracteristică care facilitează concentrarea utilizatorului asupra unui articol prin:
+
+    ascunderea elementelor neesențiale ale paginii, cum ar fi barele laterale, subsolurile și anunțurile
+    modificarea dimensiunii textului, contrastul și aspectul paginii pentru o mai bună lizibilitate.
+
+Modul Cititor este util în special pentru articole: adică paginile care au ca caracteristică principală un corp de conținut text. Paginile care nu au un articol identificabil nu sunt eligibile pentru afișare în Modul Cititor. Pentru a afla dacă o pagină este un articol, verificați proprietatea isArticle.
+
+Pentru a afla dacă un tab este deja în Modul Cititor, verificați proprietatea isInReaderMode.
 
 ## Installation
 
 Install with composer:
 
 ```sh
-composer require tudor/read-mode:"*"
+composer require tudor/read-mode *@dev
 ```
 
-## Updating
-
-```sh
-composer update tudor/read-mode:"*"
-php flarum migrate
-php flarum cache:clear
-```
-
-## Links
-
-- [Packagist](https://packagist.org/packages/tudor/read-mode)
-- [GitHub](https://github.com/tudor/read-mode)
-- [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
+It is a [Flarum](http://flarum.org) extension.
